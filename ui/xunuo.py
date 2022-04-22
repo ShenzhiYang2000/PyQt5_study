@@ -109,6 +109,10 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+        # #实例化子窗口
+        # self.childwin = childwin()
+        # self.button_lishi.clicked.connect(self.openchilewin)
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -119,3 +123,31 @@ class Ui_MainWindow(object):
         self.button_chaxun.setText(_translate("MainWindow", "查询"))
         self.label_weizhi.setText(_translate("MainWindow", "位置："))
         self.label_yingbian.setText(_translate("MainWindow", "应变："))
+
+#     def openchilewin(self):
+#         print('打开子窗口')
+#         self.childwin.show()
+#         data = np.loadtxt("D:/学习资料/毕业设计/徐诺/历史数据.txt")
+#         lishi_weizhi = data[:, 0].tolist()
+#         lishi_yingbian = data[:, 1].tolist()
+#         #连接信号
+#         self.childwin._signal.connect(self.getData())
+#
+#     def getData(self,parameter):
+#         self.childwin.textEdit.setText(parameter)
+#
+#
+#
+# class childwin(QWidget):
+#     #定义信号
+#     _signal = QtCore.pyqtSignal(str)
+#     def __init__(self):
+#         super(childwin,self).__init__()
+#         self.initUI()
+#
+#     def initUI(self):
+#         self.setWindowTitle('历史记录')
+#         self.resize(300,280)
+#
+#         self.textEdit = QTextEdit()
+

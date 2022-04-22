@@ -18,6 +18,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from PyQt5 import QtCore, QtWidgets, QtGui
 import xunuo
+import os
 
 
 def read_txt():
@@ -33,6 +34,17 @@ def read_txt():
         # ui.timer.timeout.connect(update)
         ui.timer.start(1000)
 
+def write_txt(list_weizhi, list_yingbian):
+    with open("D:/学习资料/毕业设计/徐诺/历史数据.txt", 'w') as f:
+        for weizhi, yingbian in zip(list_weizhi,list_yingbian):
+            strline = str(weizhi) + '  ' + str(yingbian) + '\n'
+            f.writelines(strline)
+
+def history_search():
+    os.startfile(r'D:/学习资料/毕业设计/徐诺/历史数据.txt')
+
+
+
 
 
 def huatu(ui_x,ui_y):
@@ -42,10 +54,12 @@ def huatu(ui_x,ui_y):
 
 def jiance():
     weizhi = int(ui.lineEdit_weihzi.text())
+    index = ui.weizhi.index(weizhi)
     print(weizhi)
-    print(ui.yingbian[weizhi - 1])
-    print(type(ui.yingbian[weizhi - 1]))
-    ui.lineEdit_yingbian.setText(str(ui.yingbian[weizhi - 1]))
+    print(index)
+    print(ui.yingbian[index])
+    print(type(ui.yingbian[index]))
+    ui.lineEdit_yingbian.setText(str(ui.yingbian[index]))
 
 def update():
     ui.read_flag += 1
@@ -54,6 +68,7 @@ def update():
     ui._weizhi = ui.weizhi[(ui.read_flag-1)*100:ui.read_flag*100]
     ui._yingbian = ui.yingbian[(ui.read_flag - 1) * 100:ui.read_flag * 100]
     huatu(ui._weizhi, ui._yingbian)
+    write_txt(ui._weizhi, ui._yingbian)
 
 def stop_read():
     ui.timer.stop()
@@ -65,6 +80,7 @@ def click_button():
     #ui.button_kaishi.clicked.connect(huatu)
     ui.button_chaxun.clicked.connect(jiance)
     ui.button_zanting.clicked.connect(stop_read)
+    ui.button_lishi.clicked.connect(history_search)
 
 
 if __name__ == '__main__':
