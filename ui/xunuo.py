@@ -19,7 +19,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 import sys, math
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import *
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -63,6 +63,12 @@ class Ui_MainWindow(object):
         self.graph_huatu.setGeometry(QtCore.QRect(20, 110, 751, 181))
         self.graph_huatu.setObjectName("graph_huatu")
 
+        self.timer = QTimer()
+        #self.timer.timeout.connect(self.update)
+        self.timer.start(1000)
+        self.read_flag = 0
+
+
 
         self.button_chaxun = QtWidgets.QPushButton(self.centralwidget)
         self.button_chaxun.setGeometry(QtCore.QRect(510, 350, 75, 23))
@@ -73,6 +79,8 @@ class Ui_MainWindow(object):
         self.label_weizhi.setStyleSheet('color: white')
         self.lineEdit_weihzi = QtWidgets.QLineEdit(self.centralwidget)#注意打错了
         self.weizhi = []
+        self._weizhi = []
+        self._yingbian = []
         self.lineEdit_weihzi.setGeometry(QtCore.QRect(110, 350, 113, 21))
         self.lineEdit_weihzi.setObjectName("lineEdit_weihzi")
         self.label_yingbian = QtWidgets.QLabel(self.centralwidget)
